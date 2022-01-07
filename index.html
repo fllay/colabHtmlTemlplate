@@ -9,9 +9,22 @@
 
 <body>
     <h1>This is the Index page</h1>
+    <div id="placeholder"></div>
 </body>
 
 <script>
+
+  function listen() {
+    console.log("Start")
+    var source = new EventSource("/stream/");
+    var target = document.getElementById("placeholder");
+    source.onmessage = function(msg) {
+      console.log(msg.data)
+	target.innerHTML = msg.data + '<br>';
+    }
+}
+
+listen();
 </script>
 
 </html>
